@@ -1,0 +1,11 @@
+#!/bin/bash
+
+docker compose up -d
+
+command=$(cat <<COMMAND
+pip install -r requirements.txt
+flask --app api run --debug -h 0.0.0.0
+COMMAND
+)
+
+docker compose exec api-server bash -c "$command"
